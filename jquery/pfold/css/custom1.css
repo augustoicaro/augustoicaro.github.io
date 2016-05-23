@@ -1,0 +1,183 @@
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1
+}
+
+
+/* Demo 1 */
+.demo-1 .uc-container{
+	width: 100%;
+	height: 36px;
+	float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+	font-family: "Satisfy", cursive;
+} 
+
+.demo-1 .grid {
+    width: 100%;
+    /*margin: 30px auto;*/
+}
+
+.demo-1 .uc-single, 
+.demo-1 .uc-initial-content,
+.demo-1 .uc-back,
+.demo-1 .uc-front {
+	background-color: #eee;
+	background-image: -webkit-linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.05));
+	background-image: -moz-linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.05));
+	box-shadow: inset 0 0 0 .1em hsla(0,0%,0%,.1), inset 0 0 1em hsla(0,0%,0%,.05), 0 .1em .25em hsla(0,0%,0%,.5);
+}
+
+
+.demo-1 .uc-initial-content:after, .demo-1 .uc-initial-content:before {
+ 	bottom: .1em;
+	box-shadow: 0 0 .5em .5em hsla(0,0%,0%,.25);
+	content: '';
+	height: 1em;
+	position: absolute;
+	width: 80%;
+	z-index: -1;
+}
+
+
+.demo-1 .uc-initial-content:after{
+ 	right: 1em;
+	/*-webkit-transform: rotate(3deg);*/
+	-webkit-transform-origin: 100% 100%;
+}
+
+.demo-1 .uc-initial-content:before {
+ 	left: 1em;
+	/*-webkit-transform: rotate(-3deg);*/
+	-webkit-transform-origin: 0% 100%;
+}
+
+.demo-1 .uc-final {
+	background-color: #eee;
+	background-image: -webkit-linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.05) 33%, hsla(0,0%,0%,.05) 33%, hsla(0,0%,100%,.05) 67%, hsla(0,0%,0%,.05) 67%, hsla(0,0%,100%,.05)), -webkit-linear-gradient(left, hsla(0,0%,0%,.1), hsla(0,0%,100%,.05) 25%, hsla(0,0%,0%,.05) 25%, hsla(0,0%,100%,.05) 50%, hsla(0,0%,0%,.05) 50%, hsla(0,0%,100%,.05) 75%, hsla(0,0%,0%,.05) 75%, hsla(0,0%,100%,.05));
+	background-image: -moz-linear-gradient(hsla(0,0%,0%,.1), hsla(0,0%,100%,.05) 33%, hsla(0,0%,0%,.05) 33%, hsla(0,0%,100%,.05) 67%, hsla(0,0%,0%,.05) 67%, hsla(0,0%,100%,.05)), -moz-linear-gradient(left, hsla(0,0%,0%,.1), hsla(0,0%,100%,.05) 25%, hsla(0,0%,0%,.05) 25%, hsla(0,0%,100%,.05) 50%, hsla(0,0%,0%,.05) 50%, hsla(0,0%,100%,.05) 75%, hsla(0,0%,0%,.05) 75%, hsla(0,0%,100%,.05));
+	box-shadow: inset 0 0 0 .1em hsla(0,0%,0%,.1), inset 0 0 1em hsla(0,0%,0%,.05), 0 .1em .25em hsla(0,0%,0%,.5);
+}
+
+.demo-1 .uc-final:after, .demo-1 .uc-final:before {
+	bottom: .1em;
+	box-shadow: 0 0 .5em .5em hsla(0,0%,0%,.25);
+	content: '';
+	height: 1em;
+	position: absolute;
+	width: 80%;
+	z-index: -1;
+}
+
+.demo-1 .uc-final:after {
+	right: 1em;
+	-webkit-transform: rotate(3deg);
+	-webkit-transform-origin: 100% 100%;
+	transform: rotate(3deg);
+	transform-origin: 100% 100%;
+}
+
+.demo-1 .uc-final:before {
+	left: 1em;
+	-webkit-transform: rotate(-3deg);
+	-webkit-transform-origin: 0% 100%;
+	transform: rotate(3deg);
+	transform-origin: 100% 100%;
+}
+
+.demo-1 span.clickme {
+    display: block;
+    float: left;
+    color: #224092;
+    width: 100%;
+	height: 36px;
+    margin: 0 0;
+    cursor: pointer;
+	text-align: center;
+	font-size: 24px;
+	padding-top: 3px;
+    /*background: transparent url(../images/clickme.png) no-repeat center center;*/
+}
+
+.demo-1 .scrollwrap {
+    width: 100%;
+	height: 100%;
+	padding-top: 20px;
+	padding-bottom: 50px;
+	overflow: auto;
+	position: absolute;
+	text-align: justify;
+	color: #224092;
+	font-family: "Satisfy", cursive;
+	text-indent: 15px;
+	box-shadow: inset 0 0 0 1px rgba(255,255,255,0.7);
+}
+
+.demo-1 .scrollwrap h3 {
+    font-weight: normal;
+    font-size: 22px;
+    padding: 30px 0 10px 30px;
+    pointer-events: none;
+    text-align: left;
+}
+
+.demo-1 .scrollwrap p {
+    font-size: 18px;
+    padding: 0 40px 0 40px;
+}
+
+.demo-1 .scrollwrap ol, .demo-1 .scrollwrap ul{
+    font-size: 18px;
+    padding: 0 40px 0 40px;
+    margin-left: 40px;
+}
+
+.demo-1 .scrollwrap p.signature {
+    font-size: 20px;
+    padding: 10px 30px 0 30px;
+    text-align: right;
+    pointer-events: none;
+}
+
+.demo-1 .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: "Satisfy", cursive;
+    color: #224092;
+    cursor: pointer;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #224092;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 14px;
+}
+
+.demo-1 .clickme:hover {
+    background: rgba(138,138,138,0.4);
+	color: rgba(0,0,0,0.7);
+}
+
+.demo-1 .close:hover {
+    background: rgba(138,138,138,0.4);
+	color: rgba(0,0,0,0.7);
+}

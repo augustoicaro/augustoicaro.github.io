@@ -1,0 +1,188 @@
+.sidepanel {
+  position: absolute;
+  width: 15%;
+  height: 580px;
+  float: left;
+  top: 130px;
+  background-color: #eee;
+  background-image: -webkit-linear-gradient(hsla(0, 0%, 0%, .1), hsla(0, 0%, 100%, .05));
+  background-image: -moz-linear-gradient(hsla(0, 0%, 0%, .1), hsla(0, 0%, 100%, .05));
+  box-shadow: inset 0 0 0 .1em hsla(0, 0%, 0%, .1), inset 0 0 1em hsla(0, 0%, 0%, .05), 0 .1em .25em hsla(0, 0%, 0%, .5);
+}
+.sidepanel:after, .sidepanel:before {
+  bottom: .1em;
+  box-shadow: 0 0 .5em .5em hsla(0, 0%, 0%, .25);
+  content:'';
+  height: 3em;
+  position: absolute;
+  width: 80%;
+  z-index: -1;
+}
+.sidepanel:after {
+  right: 1em;
+  /*-webkit-transform: rotate(3deg);*/
+  -webkit-transform-origin: 100% 100%;
+}
+.sidepanel:before {
+  left: 1em;
+  /*-webkit-transform: rotate(-3deg);*/
+  -webkit-transform-origin: 0% 100%;
+}
+.sidepanel #lang, #lang1, #lang2 {
+  width: 150px;
+  height: 50px;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+.sidepanel #lang img, #lang1 img, #lang2 img {
+  float: left;
+}
+.sidepanel #lang img:hover, #lang1 img:hover, #lang2 img:hover {
+  cursor: pointer;
+}
+.container {
+  width: 50%;
+  position: relative;
+  float: left;
+}
+.top {
+  float: right;
+  position: relative;
+}
+.top #logo1, #logo3, #logo5 {
+  background: url(../images/ufal.png) no-repeat;
+  float: right;
+  position: relative;
+  width: 70px;
+  height: 110px;
+}
+.top #logo2, #logo4, #logo6 {
+  background: url(../images/calamgo.png) no-repeat;
+  float: left;
+  position: absolute;
+  width: 72px;
+  height: 72px;
+}
+.main {
+  width: 68%;
+  margin: 0 auto;
+  position: relative;
+}
+.top > header {
+  height: 108px;
+  margin: 10px 10px 10px 10px;
+  position: relative;
+  height: 110px;
+}
+.top > header h1 {
+  padding-top: 70px;
+  float: left;
+  padding-right: 10px;
+  font-weight: normal;
+}
+.top > header p {
+  margin-top: 0px;
+  margin-left: 80px;
+  position: absolute;
+  width: 288px;
+  font-size: 25px;
+  text-align: justify;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+.top > header h1 a {
+  width: 376px;
+  height: 25px;
+  color: #FFFFFF;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  font-weight: bold;
+}
+.container > header {
+  margin: 10px;
+  padding: 32px 10px 10px 10px;
+  position: relative;
+  display: block;
+  text-align: left;
+}
+.container > header h1 {
+  line-height: 36px;
+  position: relative;
+  font-weight: 300;
+  font-size: 6em;
+  color: rgb(0, 0, 0);
+  font-family: origamifont;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+.container > header h2, p.info {
+  font-size: 14px;
+  font-weight: 300;
+  padding: 15px 0 20px 0;
+  margin-left: 128px;
+  color: #134142;
+  font-family: Cambria, Georgia, serif;
+  font-style: italic;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+.sidepanel h1, .sidepanel h2, .sidepanel h3, .sidepanel h4, .sidepanel img {
+  padding: 10px 10px 10px 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+}
+.footer {
+  margin-top: 720px;
+  height: 3em;
+  width: 100%;
+  /*background: rgba(0,0,0,0.4);*/
+}
+.footer #copyright, #copyright1, #copyright2 {
+  float: left;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  font-size: 22px;
+}
+.footer #toggle {
+  float: left;
+  margin-left: 40px;
+  margin-top: 5px;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  font-size: 22px;
+}
+.footer #toggletext  {
+  float: left;
+  margin-top: px;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+  font-size: 22px;
+}
+.footer #container {
+  float: left;
+  width: 100px;
+  margin-top: 7px;
+}
+.footer #validators, #validators1, #validators2 {
+  height: 3em;
+  position: relative;
+  margin-top: 5px;
+  margin-right: 10px;
+  text-align: center;
+}
+.footer #validators img, #validators1 img, #validators2 img {
+  float: right;
+  margin-left: 5px;
+}
+.togglecontainer {
+  width: 100px;
+  position: relative;
+  float: left;
+}
