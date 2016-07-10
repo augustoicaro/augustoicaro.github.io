@@ -373,6 +373,9 @@ $.each(classList, function (index, item) {
             pfold.fold();
             console.debug("FECHANDO opened = %s",opened);
             } );
+            // Remove initial container
+            console.debug("%s",$item.find( 'div.uc-initial')[0]);
+            $item.find( 'div.uc-initial')[0].remove();
         } );
         $( '#grid2 > div.uc-container' ).each( function( i ) {
             var $item = $( this ), direction;
@@ -409,6 +412,9 @@ $.each(classList, function (index, item) {
             pfold.fold();
             console.debug("FECHANDO opened = %s",opened);
             } );
+            // Remove initial container
+            console.debug("%s",$item.find( 'div.uc-initial')[0]);
+            $item.find( 'div.uc-initial')[0].remove();
         } );
     });
 })();
