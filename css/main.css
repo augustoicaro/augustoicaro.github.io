@@ -112,13 +112,8 @@
   position: relative;
   font-weight: 300;
   font-size: 14em;
-  color: transparent;
+  color: rgba(78, 39, 0, 0.7);
   font-family: origamifont;
-  text-shadow: rgba(224, 224, 224, 0.5) 0px 2px 3px;
-  background-color: rgba(78, 39, 0, 0.7);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
 }
 .container > header h2, p.info {
   margin-top: -32px;
