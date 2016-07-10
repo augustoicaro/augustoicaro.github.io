@@ -102,21 +102,26 @@
 }
 .container > header {
   margin: 10px;
-  padding: 32px 10px 10px 10px;
+  padding: 0px 10px 0px 0px;
   position: relative;
   display: block;
   text-align: left;
 }
 .container > header h1 {
-  line-height: 36px;
+  line-height: 97px;
   position: relative;
   font-weight: 300;
-  font-size: 6em;
-  color: rgb(0, 0, 0);
+  font-size: 14em;
+  color: transparent;
   font-family: origamifont;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  text-shadow: rgba(224, 224, 224, 0.5) 0px 2px 3px;
+  background-color: rgba(78, 39, 0, 0.7);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
 }
 .container > header h2, p.info {
+  margin-top: -32px;
   font-size: 14px;
   font-weight: 300;
   padding: 15px 0 20px 0;
@@ -134,7 +139,9 @@
   text-align: center;
 }
 .footer {
-  margin-top: 720px;
+  position: absolute;
+  bottom: 31px;
+  left: 0;
   height: 3em;
   width: 100%;
   /*background: rgba(0,0,0,0.4);*/

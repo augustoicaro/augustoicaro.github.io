@@ -4,7 +4,7 @@
  *
  * Licensed under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
- * 
+ *
  * Copyright 2012, Codrops
  * http://www.codrops.com
  */
@@ -63,7 +63,7 @@
 
     this.$el = $(element);
     this._init(options);
-    
+
   };
 
   // the options
@@ -72,7 +72,7 @@
     perspective: 1200,
     // each folding step's speed
     speed: 450,
-    // each folding step's easing 
+    // each folding step's easing
     easing: 'linear',
     // delay between each (un)folding step (ms)
     folddelay: 0,
@@ -80,12 +80,12 @@
     folds: 2,
     // the direction of each unfolding step
     folddirection: ['right', 'top'],
-    // use overlays to simulate a shadow for each folding step 
+    // use overlays to simulate a shadow for each folding step
     overlays: true,
-    // the main container moves (translation) in order to keep its initial position 
+    // the main container moves (translation) in order to keep its initial position
     centered: false,
     // allows us to specify a different speed for the container's translation
-    // values range : [0 - 1] 
+    // values range : [0 - 1]
     // if 0 the container jumps immediately to the final position (translation).
     // this is only valid if centered is true
     containerSpeedFactor: 1,
@@ -154,7 +154,7 @@
       this.$fContent = this.$el.find('.uc-final');
       this.fContent = this.$fContent.html();
       // this element is inserted in the main container and it will contain the initial and final content elements
-      this.$finalEl = $('<div class="uc-final-wrapper"></div>').append(this.$iContent.clone().hide(), this.$fContent).hide();
+      this.$finalEl = $('<div class="uc-final-wrapper"></div>').append(this.$iContent.clone(), this.$fContent);
       this.$el.append(this.$finalEl);
 
       // initial element's offset
@@ -419,7 +419,7 @@
         console.debug("Desativando os efeitos");
         this.$el.css('perspective','');
         this.$el.css('transition','');
-        //el.style.zoom = "";        
+        //el.style.zoom = "";
       }
 
       // Basically we are replacing the element's content with 2 divisions, the top and bottom elements.

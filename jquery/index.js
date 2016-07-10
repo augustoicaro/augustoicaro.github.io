@@ -5,26 +5,26 @@
 
   /* let's check browser support with modernizr */
 
-	(function() {
-	  if(!Modernizr.csstransforms3d)
-		{
-		  $(function() {
-			  var notify = function(message) {
-		 		  var $message = $('<p style="display:none; color:red; font-size:13px;">' + message + '</p>');
-		  		$('.notifications').append($message);
-		  		$message.slideDown(300, function() {
-					  window.setTimeout(function() {
-			  		  $message.slideUp(600, function() {
-			    		  $message.remove();
-			  			});
-		   			}, 2000);
-		  		});
-				};
-				notify('CSS 3D transforms are not supported in your browser');
-			});
-		}
-	})();
-  
+    (function() {
+      if(!Modernizr.csstransforms3d)
+        {
+          $(function() {
+              var notify = function(message) {
+                  var $message = $('<p style="display:none; color:red; font-size:13px;">' + message + '</p>');
+                  $('.notifications').append($message);
+                  $message.slideDown(300, function() {
+                      window.setTimeout(function() {
+                        $message.slideUp(600, function() {
+                          $message.remove();
+                          });
+                       }, 2000);
+                  });
+                };
+                notify('CSS 3D transforms are not supported in your browser');
+            });
+        }
+    })();
+
   Modernizr.addTest('firefox', function () {
     return !!navigator.userAgent.match(/firefox/i);
   });
@@ -39,19 +39,19 @@ $.each(classList, function (index, item) {
   }
 });
 
-  console.debug("Estou usando o firefox: %s",firefox);  
+  console.debug("Estou usando o firefox: %s",firefox);
 
 /* Page slider code */
   $(function() {
     $('html, body').each(function () {
       var initScrollLeft = $(this).attr('scrollLeft');
-      
+
       $(this).attr('scrollLeft', initScrollLeft + 1);
       if ($(this).attr('scrollLeft') == initScrollLeft + 1) {
         scrollElement = this.nodeName.toLowerCase();
         $(this).attr('scrollLeft', initScrollLeft);
         return false;
-      }    
+      }
     });
     $scrollElement = $(scrollElement);
   });
@@ -143,13 +143,13 @@ $.each(classList, function (index, item) {
 
     $('.panel').scroll(function() {
       window.clearTimeout(timer);
-	  if(firefox)
-	  {
+      if(firefox)
+      {
         timer = window.setTimeout(scrollToPanel, 250, this);
-	  }
-	  else
-	  {
-		timer = window.setTimeout(scrollToPanel, 50, this);
+      }
+      else
+      {
+        timer = window.setTimeout(scrollToPanel, 50, this);
       }
     });
 
@@ -157,13 +157,13 @@ $.each(classList, function (index, item) {
        thing without triggering this debounced panel snap. */
     $window.scroll(function() {
       window.clearTimeout(timer);
-	  if(firefox)
-	  {
+      if(firefox)
+      {
         timer = window.setTimeout(scrollToClosestPanel, 250);
-	  }
-	  else
-	  {
-		timer = window.setTimeout(scrollToClosestPanel, 50);
+      }
+      else
+      {
+        timer = window.setTimeout(scrollToClosestPanel, 50);
       }
     });
   });
@@ -269,145 +269,148 @@ $.each(classList, function (index, item) {
     $window.load(center).resize(center);
   });*/
  /* PFold js */
-	/*$(function() {
-		var $container = $( '#uc-container' ),
-			pfold = $( '#uc-container' ).pfold({
-				easing : 'ease-in-out',
-				folds : 6,
-				folddirection : ['right','right','right','top','top','bottom']
-		});
-
-		$container.find( 'span.clickme' ).on( 'click', function() {
-			pfold.unfold();
-		} ).end().find( 'span.close' ).on( 'click', function() {
-			pfold.fold();
-		} );
-	});*/
-  /*PFOLD functions*/
-	$(function() {
-		// say we want to have only one item opened at one moment
-		var opened = false;
-		console.debug("inicializei o opended");
-		var open;
-      
-		$( '#grid > div.uc-container' ).each( function( i ) {
-      console.debug("%s", i);
-			var $item = $( this ), direction;
-			direction = ['bottom','right','top','right','top','right','bottom'];
-					
-			var pfold = $item.pfold( {
-			folddirection : direction,
-			//easing : 'ease-in-out',
-			speed : 180,
-			folds: 7,
-			centered : true
-			} );
-      //Open HOME paper at Startup
-      if( i === 0 ) {
-        $item.find( 'span.clickme' ).ready( function() {        
-          opened = true;
-					open = pfold;
-					pfold.unfold();
+    /*$(function() {
+        var $container = $( '#uc-container' ),
+            pfold = $( '#uc-container' ).pfold({
+                easing : 'ease-in-out',
+                folds : 6,
+                folddirection : ['right','right','right','top','top','bottom']
         });
-      }
-			
-			$item.find( 'span.clickme' ).on( 'click', function() {
-				console.debug("ENTRANDO opened = %s",opened);
-				if( !opened ) {
+
+        $container.find( 'span.clickme' ).on( 'click', function() {
+            pfold.unfold();
+        } ).end().find( 'span.close' ).on( 'click', function() {
+            pfold.fold();
+        } );
+    });*/
+    /*PFOLD functions*/
+    $(function() {
+        // say we want to have only one item opened at one moment
+        var opened = false;
+        console.debug("inicializei o opended");
+        var open;
+
+        $( '#grid > div.uc-container' ).each( function( i ) {
+            console.debug("%s", i);
+            var $item = $( this ), direction;
+            direction = ['bottom','right','top','right','top','right','bottom'];
+
+            var pfold = $item.pfold( {
+            folddirection : direction,
+            //easing : 'ease-in-out',
+            speed : 180,
+            folds: 7,
+            centered : true
+            } );
+            //Open HOME paper at Startup
+            if( i === 0 ) {
+            $item.find( 'span.clickme' ).ready( function() {
+              opened = true;
+                        open = pfold;
+                        pfold.unfold();
+            });
+            }
+
+            $item.find( 'span.clickme' ).on( 'click', function() {
+                console.debug("ENTRANDO opened = %s",opened);
+                if( !opened ) {
+                    pfold.support = document.getElementById("effects").checked;
+                    opened = true;
+                    open = pfold;
+                    console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    pfold.unfold();
+                    }
+                else {
+                    console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    open.fold();
+                    open = pfold;
+                    pfold.support = document.getElementById("effects").checked;
+                    pfold.unfold();
+                    console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    /*opened = true;*/
+                }
+                console.debug("SAINDO opened = %s",opened);
+            } ).end().find( 'span.close' ).on( 'click', function() {
+            pfold.fold();
+            console.debug("FECHANDO opened = %s",opened);
+            } );
+            // Remove initial container
+            console.debug("%s",$item.find( 'div.uc-initial')[0]);
+            $item.find( 'div.uc-initial')[0].remove();
+        } );
+        $( '#grid1 > div.uc-container' ).each( function( i ) {
+            var $item = $( this ), direction;
+            direction = ['bottom','right','top','right','top','right','bottom'];
+
+            var pfold = $item.pfold( {
+            folddirection : direction,
+            //easing : 'ease-in-out',
+            speed : 180,
+            folds: 7,
+            centered : true
+            } );
+
+            $item.find( 'span.clickme' ).on( 'click', function() {
+                console.debug("ETRANDO opened = %s",opened);
+                if( !opened ) {
           pfold.support = document.getElementById("effects").checked;
-					opened = true;
-					open = pfold;
-					console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					pfold.unfold();
-					}
-				else {
-					console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					open.fold();
-					open = pfold;
+                    opened = true;
+                    open = pfold;
+                    console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    pfold.unfold();
+                    }
+                else {
+                    console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    open.fold();
+                    open = pfold;
           pfold.support = document.getElementById("effects").checked;
-					pfold.unfold();
-					console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					/*opened = true;*/
-				}
-				console.debug("SAINDO opened = %s",opened);
-			} ).end().find( 'span.close' ).on( 'click', function() {
-			pfold.fold();
-			console.debug("FECHANDO opened = %s",opened);
-			} );
-		} );
-		$( '#grid1 > div.uc-container' ).each( function( i ) {
-			var $item = $( this ), direction;
-			direction = ['bottom','right','top','right','top','right','bottom'];
-					
-			var pfold = $item.pfold( {
-			folddirection : direction,
-			//easing : 'ease-in-out',
-			speed : 180,
-			folds: 7,
-			centered : true
-			} );
-			
-			$item.find( 'span.clickme' ).on( 'click', function() {
-				console.debug("ETRANDO opened = %s",opened);
-				if( !opened ) {
+                    pfold.unfold();
+                    console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    /*opened = true;*/
+                }
+                console.debug("SAINDO opened = %s",opened);
+            } ).end().find( 'span.close' ).on( 'click', function() {
+            pfold.fold();
+            console.debug("FECHANDO opened = %s",opened);
+            } );
+        } );
+        $( '#grid2 > div.uc-container' ).each( function( i ) {
+            var $item = $( this ), direction;
+            direction = ['bottom','right','top','right','top','right','bottom'];
+
+            var pfold = $item.pfold( {
+            folddirection : direction,
+            //easing : 'ease-in-out',
+            speed : 180,
+            folds: 7,
+            centered : true
+            } );
+
+            $item.find( 'span.clickme' ).on( 'click', function() {
+                console.debug("ETRANDO opened = %s",opened);
+                if( !opened ) {
           pfold.support = document.getElementById("effects").checked;
-					opened = true;
-					open = pfold;
-					console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					pfold.unfold();
-					}
-				else {
-					console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					open.fold();
-					open = pfold;
+                    opened = true;
+                    open = pfold;
+                    console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    pfold.unfold();
+                    }
+                else {
+                    console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    open.fold();
+                    open = pfold;
           pfold.support = document.getElementById("effects").checked;
-					pfold.unfold();
-					console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					/*opened = true;*/
-				}
-				console.debug("SAINDO opened = %s",opened);
-			} ).end().find( 'span.close' ).on( 'click', function() {
-			pfold.fold();
-			console.debug("FECHANDO opened = %s",opened);
-			} );
-		} );
-		$( '#grid2 > div.uc-container' ).each( function( i ) {
-			var $item = $( this ), direction;
-			direction = ['bottom','right','top','right','top','right','bottom'];
-					
-			var pfold = $item.pfold( {
-			folddirection : direction,
-			//easing : 'ease-in-out',
-			speed : 180,
-			folds: 7,
-			centered : true
-			} );
-			
-			$item.find( 'span.clickme' ).on( 'click', function() {
-				console.debug("ETRANDO opened = %s",opened);
-				if( !opened ) {
-          pfold.support = document.getElementById("effects").checked;
-					opened = true;
-					open = pfold;
-					console.debug("FECHADO pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					pfold.unfold();
-					}
-				else {
-					console.debug("ABERTO 1 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					open.fold();
-					open = pfold;
-          pfold.support = document.getElementById("effects").checked;
-					pfold.unfold();
-					console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
-					/*opened = true;*/
-				}
-				console.debug("SAINDO opened = %s",opened);
-			} ).end().find( 'span.close' ).on( 'click', function() {
-			pfold.fold();
-			console.debug("FECHANDO opened = %s",opened);
-			} );
-		} );			
-	});
+                    pfold.unfold();
+                    console.debug("ABERTO 2 pfold = %s, open = %s, opened = %s",pfold,open,opened);
+                    /*opened = true;*/
+                }
+                console.debug("SAINDO opened = %s",opened);
+            } ).end().find( 'span.close' ).on( 'click', function() {
+            pfold.fold();
+            console.debug("FECHANDO opened = %s",opened);
+            } );
+        } );
+    });
 })();
 
 
