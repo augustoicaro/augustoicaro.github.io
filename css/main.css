@@ -134,19 +134,10 @@
   text-align: center;
 }
 .footer {
-  position: absolute;
-  top: calc( 525px + 23% );
-  height: 3em;
-  width: 100%;
-}
-@media (min-height:960px) {
-  .footer {
-    position: relative;
-    bottom: 31px;
-    left: 0;
-    height: 3em;
-    width: 100%;
-  }
+position: absolute;
+top: calc( 525px + 23% );
+height: 3em;
+width: 100%;
 }
 .footer #copyright, #copyright1, #copyright2 {
   float: left;
@@ -189,7 +180,7 @@
   margin-left: 5px;
 }
 .togglecontainer {
-  width: 202px;
+  width: 205px;
   position: relative;
   float: left;
 }
