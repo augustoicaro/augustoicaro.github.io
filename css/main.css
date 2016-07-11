@@ -203,6 +203,10 @@
 .switch-light.switch-material a {
   background: url('../images/bg6.jpg') !important;
 }
+.switch-light.switch-material > span:before, .switch-light.switch-material > span:after, .switch-toggle.switch-material label:after {
+  background: rgba(75, 216, 0, 0.5) !important;
+}
+
 material > span:before, .switch-light.switch-material > span:after, .switch-toggle.switch-material label:after {
   background: none !important;
 }

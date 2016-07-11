@@ -49,14 +49,14 @@
       vertical-align: middle; }
     .switch-light input:focus ~ span a, .switch-light input:focus + label {
       outline-width: 2px;
-      outline-style: solid;
+      outline-style: none;
       outline-color: Highlight;
       /* Chrome/Opera gets its native focus styles.
      */ }
       @media (-webkit-min-device-pixel-ratio: 0) {
         .switch-light input:focus ~ span a, .switch-light input:focus + label {
           outline-color: -webkit-focus-ring-color;
-          outline-style: auto; } }
+          outline-style: none; } }
   /* don't hide the input from screen-readers and keyboard access
  */
   .switch-light input {
