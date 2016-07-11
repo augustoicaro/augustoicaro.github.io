@@ -662,40 +662,6 @@
         fty = ty;
 
       if (this.options.centered) {
-
-        /*var translationValue = this._getTranslationValue();
-
-				if( translationValue.x > 0 && this.fOffsetR + translationValue.x >= 0 ) {
-
-					ftx = ( this.fOffsetL >= 0 ) ? Math.min( translationValue.x , this.fOffsetR ) : translationValue.x + ( tx - translationValue.x );
-
-				}
-				else if( translationValue.x < 0 && this.fOffsetL + translationValue.x >= 0 ) {
-
-					ftx = ( this.fOffsetR >= 0 ) ? Math.min( translationValue.x , this.fOffsetL ) : translationValue.x + ( tx - translationValue.x );
-
-				}
-				else {
-
-					ftx = translationValue.x + ( tx - translationValue.x );
-
-				}
-
-				if( translationValue.y > 0 && this.fOffsetB + translationValue.y >= 0 ) {
-
-					fty = ( this.fOffsetT >= 0 ) ? Math.min( translationValue.y , this.fOffsetB ) : translationValue.y + ( ty - translationValue.y );
-
-				}
-				else if( translationValue.y < 0 && this.fOffsetT + translationValue.y >= 0 ) {
-
-					fty = ( this.fOffsetB >= 0 ) ? Math.min( translationValue.y , this.fOffsetT ) : translationValue.y + ( ty - translationValue.y );
-
-				}
-				else {
-
-					fty = translationValue.y + ( ty - translationValue.y );
-
-				}*/
         console.debug("O valor top do botao eh: %s", this.initialDim.offsetT)
         switch (document.body.className) {
         case "english-visible":

@@ -82,13 +82,17 @@ $.each(classList, function (index, item) {
 
     $('.panel')
       .waypoint(function(direction) {
-        $body.toggleClass(this.id + '-visible', direction === 'right');
+        console.debug("Initializing: %s",direction);
+        $body.removeClass("english-visible portuguese-visible spanish-visible");
+        $body.addClass(this.element.id + '-visible', direction === 'right');
       }, {
         offset: '50%',
         horizontal: true
       })
       .waypoint(function(direction) {
-        $body.toggleClass(this.id + '-visible', direction === 'left');
+        console.debug("Initializing2: %s",direction);
+        $body.removeClass("english-visible portuguese-visible spanish-visible");
+        $body.addClass(this.element.id + '-visible', direction === 'left');
       }, {
         offset: '-50%',
         horizontal: true

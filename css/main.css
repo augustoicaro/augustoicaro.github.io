@@ -1,7 +1,7 @@
 .sidepanel {
   position: absolute;
   width: 15%;
-  height: 580px;
+  height: calc( 385px + 23% );
   float: left;
   top: 130px;
   background-color: #eee;
@@ -135,11 +135,18 @@
 }
 .footer {
   position: absolute;
-  bottom: 31px;
-  left: 0;
+  top: calc( 525px + 23% );
   height: 3em;
   width: 100%;
-  /*background: rgba(0,0,0,0.4);*/
+}
+@media (min-height:960px) {
+  .footer {
+    position: relative;
+    bottom: 31px;
+    left: 0;
+    height: 3em;
+    width: 100%;
+  }
 }
 .footer #copyright, #copyright1, #copyright2 {
   float: left;
@@ -152,8 +159,8 @@
 }
 .footer #toggle {
   float: left;
-  margin-left: 40px;
-  margin-top: 5px;
+  margin-top: 3px;
+  margin-right: 10px;
   font-family:'Open Sans Condensed', 'Arial Narrow', serif;
   color: #FFFFFF;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
@@ -170,21 +177,32 @@
 .footer #container {
   float: left;
   width: 100px;
-  margin-top: 7px;
 }
 .footer #validators, #validators1, #validators2 {
   height: 3em;
   position: relative;
-  margin-top: 5px;
-  margin-right: 10px;
-  text-align: center;
+  float: right;
+  text-align: left;
 }
 .footer #validators img, #validators1 img, #validators2 img {
   float: right;
   margin-left: 5px;
 }
 .togglecontainer {
-  width: 100px;
+  width: 185px;
   position: relative;
   float: left;
+}
+.switch-material.switch-light > span {
+  background: rgba(74, 42, 0, 0.3) !important;
+  box-shadow: rgba(224, 224, 224, 0.5) 0px 2px 3px !important;
+}
+.switch-material.switch-light input:checked ~ span a {
+  background: linear-gradient( rgba(75, 216, 0, 0.45), rgba(75, 216, 0, 0.45) ), url('../images/bg6.jpg') !important;
+}
+.switch-light.switch-material a {
+  background: url('../images/bg6.jpg') !important;
+}
+material > span:before, .switch-light.switch-material > span:after, .switch-toggle.switch-material label:after {
+  background: none !important;
 }
