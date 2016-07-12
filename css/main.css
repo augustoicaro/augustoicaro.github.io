@@ -51,14 +51,14 @@
   position: relative;
 }
 .top #logo1, #logo3, #logo5 {
-  background: url(../images/ufal.png) no-repeat;
+  background: url(../images/puc2.png) no-repeat;
   float: right;
   position: relative;
-  width: 70px;
+  width: 92px;
   height: 110px;
 }
 .top #logo2, #logo4, #logo6 {
-  background: url(../images/calamgo.png) no-repeat;
+  background: url(../images/tecgraf.png) no-repeat;
   float: left;
   position: absolute;
   width: 72px;
@@ -78,17 +78,18 @@
 .top > header h1 {
   padding-top: 70px;
   float: left;
-  padding-right: 10px;
+  padding-right: 18px;
   font-weight: normal;
+  width: 332px;
+  text-align: right;
 }
 .top > header p {
-  margin-top: 0px;
   margin-left: 80px;
   position: absolute;
-  width: 288px;
+  width: 234px;
   font-size: 25px;
   text-align: justify;
-  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  font-family: 'Open Sans Condensed', 'Arial Narrow', serif;
   color: #FFFFFF;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
@@ -99,6 +100,13 @@
   font-family:'Open Sans Condensed', 'Arial Narrow', serif;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
   font-weight: bold;
+}
+.top > header p a {
+  width: 376px;
+  height: 25px;
+  color: #FFFFFF;
+  font-family:'Open Sans Condensed', 'Arial Narrow', serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
 .container > header {
   margin: 10px;
