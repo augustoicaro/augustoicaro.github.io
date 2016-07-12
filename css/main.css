@@ -139,6 +139,11 @@ top: calc( 525px + 23% );
 height: 3em;
 width: 100%;
 }
+.footer #social {
+  float: left;
+  margin-left: calc(50% - 358px);
+  color: rgba(78, 39, 0, 0.7);
+}
 .footer #copyright, #copyright1, #copyright2 {
   float: left;
   margin-left: 10px;
@@ -200,4 +205,19 @@ width: 100%;
 
 material > span:before, .switch-light.switch-material > span:after, .switch-toggle.switch-material label:after {
   background: none !important;
+}
+.social-git:hover {
+  color: rgba(0, 0, 0, 0.45);
+}
+.social-g:hover {
+  color: rgba(218, 0, 0, 0.45);
+}
+.social-slide:hover {
+  color: rgba(255, 102, 0, 0.45);
+}
+.social-mail:hover {
+  color: rgba(0, 161, 255, 0.45);
+}
+.social-blog:hover {
+  color: rgba(75, 216, 0, 0.45);
 }
