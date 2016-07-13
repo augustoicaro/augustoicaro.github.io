@@ -297,13 +297,13 @@ $.each(classList, function (index, item) {
         $( '#grid > div.uc-container' ).each( function( i ) {
             console.debug("%s", i);
             var $item = $( this ), direction;
-            direction = ['bottom','right','top','right','top','right','bottom'];
+            direction = ['bottom','right','top','right','top','right','bottom','final'];
 
             var pfold = $item.pfold( {
             folddirection : direction,
             //easing : 'ease-in-out',
-            speed : 180,
-            folds: 7,
+            speed : 1000,
+            folds: 8,
             centered : true
             } );
             //Open HOME paper at Startup

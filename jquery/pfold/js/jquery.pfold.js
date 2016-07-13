@@ -116,6 +116,7 @@
         'transition': 'transitionend'
       };
       this.transEndEventName = this.transEndEventNames[Modernizr.prefixed('transition')];
+      console.log("Os nomes das transições são %s", this.transEndEventName);
 
       // suport for css 3d transforms and css transitions
       this.support = Modernizr.csstransitions && Modernizr.csstransforms3d;
@@ -244,6 +245,9 @@
           vertTimes += 1;
           break;
 
+        case 'final':
+          break;
+
         }
 
       }
@@ -295,6 +299,10 @@
           vertTimes += 1;
           break;
 
+        case 'final':
+
+          b -= this.initialDim.height * 2;
+          break;
         }
 
       }
@@ -336,13 +344,16 @@
           vertTimes += 1;
           break;
 
+        case 'final':
+          break;
+
         }
 
       }
 
       return {
         width: this.initialDim.width * Math.pow(2, horizTimes),
-        height: this.initialDim.height * Math.pow(2, vertTimes)
+        height: this.initialDim.height * Math.pow(2, vertTimes) - this.initialDim.height * 2
       };
 
     },
@@ -362,6 +373,7 @@
 
         w = this.lastDirection === 'left' || this.lastDirection === 'right' ? this.lastStyle.width * 2 : this.lastStyle.width,
         h = this.lastDirection === 'left' || this.lastDirection === 'right' ? this.lastStyle.height : this.lastStyle.height * 2,
+        h = this.lastDirection === 'final' ? this.lastStyle.height - this.initialDim.height * 2  : h,
         l = this.lastDirection === 'left' ? this.lastStyle.left - this.lastStyle.width : this.lastStyle.left,
         t = this.lastDirection === 'top' ? this.lastStyle.top - this.lastStyle.height : this.lastStyle.top;
 
@@ -391,6 +403,7 @@
       case 'top':
         rvd = 'bottom';
         break;
+      case 'final':
       case 'bottom':
         rvd = 'top';
         break;
@@ -405,10 +418,9 @@
 
       // apply perspective to the main container
 
+      console.debug("Reativando os efeitos");
+      this.$el.css('perspective', this.options.perspective + 'px');
       if (this.support ) {
-        console.debug("Reativando os efeitos");
-        this.$el.css('perspective', this.options.perspective + 'px');
-
         // set the transition to the main container
         // we will need to move it if:
         // this.options.centered is true;
@@ -417,7 +429,7 @@
       }
       else {
         console.debug("Desativando os efeitos");
-        this.$el.css('perspective','');
+        //this.$el.css('perspective','');
         this.$el.css('transition','');
         //el.style.zoom = "";
       }
@@ -427,7 +439,7 @@
       // and the back will have the final content for the last step. For all the other cases the top element will be blank.
       // The bottom element will have the final content for the last step and will be blank for all the other cases.
       // We need to keep the right sizes and positions for these 2 elements, so we need to cache the previous step's state.
-
+      console.log("Iniciando o _start na direção %s\n Com as dimensões: %s",this.options.folddirection[step],this.initialDim);
       step |= 0;
 
       var self = this,
@@ -450,6 +462,7 @@
 
       // remove uc-part divs inside the container (the top and bottom elements)
       this.$el.find('div.uc-part').remove();
+      this.$el.find('div.uc-part-final').remove();
 
       switch (step) {
 
@@ -510,13 +523,13 @@
 
           }
 
-          if (step === this.options.folds - 1) {
+          // if (step === this.options.folds - 1) {
+          //   var content = this._setLastStep(direction, styleCSS),
+          //     contentBottom = content.bottom,
+          //     contentTopBack = content.top;
+          //   console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
 
-            var content = this._setLastStep(direction, styleCSS),
-              contentBottom = content.bottom,
-              contentTopBack = content.top;
-
-          }
+          // }
 
         }
 
@@ -524,13 +537,20 @@
 
         // last step is to replace the topElement and bottomElement with a division that has the final content
       case this.options.folds:
-
+        console.log("Passo final final");
         styleCSS = (action === 'fold') ? this.initialDim : this._updateStepStyle(action);
+
+        var content = this._setLastStep(direction, styleCSS),
+              contentBottom = content.bottom,
+              contentTopBack = content.top;
 
         // remove top and bottom elements
         var contentIdx = (action === 'fold') ? 0 : 1;
         this.$el
           .find('.uc-part')
+          .remove();
+        this.$el
+          .find('.uc-part-final')
           .remove();
 
         this.$finalEl.css(styleCSS).show().children().eq(contentIdx).show();
@@ -569,20 +589,27 @@
 
       }
 
-      var unfoldClass = 'uc-unfold-' + direction,
-        topElClasses = (action === 'fold') ? 'uc-unfold uc-part ' + unfoldClass : 'uc-part ' + unfoldClass,
-        $topEl = $('<div class="' + topElClasses + '"><div class="uc-front">' + contentTopFront + '</div><div class="uc-back">' + contentTopBack + '</div></div>').css(styleCSS),
+      var unfoldClass = 'uc-unfold-' + direction;
+      if( direction === 'final' ) var topElClasses = (action === 'fold') ? 'uc-unfold uc-part-final ' + unfoldClass : 'uc-part-final ' + unfoldClass;
+      else var topElClasses = (action === 'fold') ? 'uc-unfold uc-part ' + unfoldClass : 'uc-part ' + unfoldClass;
+      var $topEl = $('<div class="' + topElClasses + '"><div class="uc-front">' + contentTopFront + '</div><div class="uc-back">' + contentTopBack + '</div></div>').css(styleCSS),
         $bottomEl = $('<div class="uc-part uc-single">' + contentBottom + '</div>').css(styleCSS);
+      if ( direction === 'final' )
+      {
+        console.log("TESTE DE ELEMENTO: %s", $bottomEl[0].style.height);
+        $bottomEl[0].style.height = "520px";
+        console.log("TESTE DE ELEMENTO: %s", $bottomEl[0].style.height);
+      }
 
       // cache last direction and style
       this.lastDirection = (action === 'fold') ? nextdirection : direction;
       this.lastStyle = styleCSS;
 
       // append new elements
-      this.$el.append($bottomEl, $topEl);
+      ( direction === 'final' ) ? this.$el.append($topEl, $bottomEl) : this.$el.append($bottomEl, $topEl);
 
       // add overlays
-      if (this.options.overlays && this.support) {
+      if (this.options.overlays && this.support && direction !== 'final') {
 
         this._addOverlays(action, $bottomEl, $topEl);
 
@@ -596,9 +623,10 @@
         if (self.support) {
 
           $topEl.on(self.transEndEventName, function (event) {
-
+            console.log("%s", self.transEndEventName);
+            console.log("%s", event.target.className);
             if (event.target.className !== 'uc-flipoverlay' && step < self.options.folds) {
-
+              console.log("%s", self.options.folddirection[step]);
               // goto next step in [options.folddelay] ms
               setTimeout(function () {
                 self._start(action, step + 1);
@@ -715,7 +743,7 @@
 
       contentBottom = '<div class="uc-inner"><div class="uc-inner-content" style="' + contentBottomStyle + '">' + this.fContent + '</div></div>';
 
-      var contentTopBackClasses = direction === 'top' || direction === 'bottom' ? 'uc-inner uc-inner-rotate' : 'uc-inner';
+      var contentTopBackClasses = direction === 'top' || direction === 'bottom' || direction === 'final' ? 'uc-inner uc-inner-rotate' : 'uc-inner';
       contentTopBack = '<div class="' + contentTopBackClasses + '"><div class="uc-inner-content" style="' + contentTopBackStyle + '">' + this.fContent + '</div></div>';
 
       return {

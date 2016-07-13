@@ -46,7 +46,8 @@
     /*backface-visibility: hidden;*/
 }
 
-.uc-part {
+.uc-part,
+.uc-part-final {
     top: 0;
     left: 0;
     position: absolute;
@@ -71,7 +72,23 @@
     transform: translateZ(0);
 }
 
-.uc-part .uc-back {
+.uc-part-final > div {
+    display: block;
+    position: absolute;
+    top: 90%;
+    width: 100%;
+    height: 5%;
+    -webkit-backface-visibility: hidden;
+    /*-moz-backface-visibility: hidden;*/
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    /*backface-visibility: hidden;*/
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.uc-part .uc-back,
+.uc-part-final .uc-back {
     -webkit-transform: rotateY(-180deg);
     -moz-transform: rotateY(-180deg);
     -o-transform: rotateY(-180deg);
@@ -113,6 +130,14 @@
     transform-origin: 50% 100%;
 }
 
+.uc-unfold-final {
+    -webkit-transform-origin: 50% 90%;
+    -moz-transform-origin: 50% 90%;
+    -o-transform-origin: 50% 90%;
+    -ms-transform-origin: 50% 90%;
+    transform-origin: 50% 90%;
+}
+
 /* Unfolding classes */
 .uc-unfold-left.uc-unfold {
     -webkit-transform: rotateY(-180deg);
@@ -139,6 +164,14 @@
 }
 
 .uc-unfold-bottom.uc-unfold{
+    -webkit-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);
+    -o-transform: rotateX(-180deg);
+    -ms-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+}
+
+.uc-unfold-final.uc-unfold {
     -webkit-transform: rotateX(-180deg);
     -moz-transform: rotateX(-180deg);
     -o-transform: rotateX(-180deg);
