@@ -523,13 +523,13 @@
 
           }
 
-          // if (step === this.options.folds - 1) {
-          //   var content = this._setLastStep(direction, styleCSS),
-          //     contentBottom = content.bottom,
-          //     contentTopBack = content.top;
-          //   console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
+          if (step === this.options.folds - 1) {
+            var content = this._setLastStep(direction, styleCSS),
+              contentBottom = content.bottom,
+              contentTopBack = content.top;
+            console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
 
-          // }
+          }
 
         }
 
@@ -575,8 +575,72 @@
         // all the other steps
       default:
 
-        // style of new layout will depend on the last step direction
-        styleCSS = this._updateStepStyle(action);
+        switch (step) {
+
+            case 1:
+            case this.options.folds - 2:
+                if (action === 'fold') {
+
+                  // if (step === this.options.folds - 2) {
+
+                  //   styleCSS = this.initialDim;
+                  //   contentTopFront = this.iContent;
+
+                  // }
+
+                if (step === 1) {
+                    var content = this._setLastStep(direction, styleCSS),
+                      contentBottom = content.bottom,
+                      contentTopBack = content.top;
+                }
+
+                    // this.$finalEl.hide().children().hide();
+                    // style of new layout will depend on the last step direction
+                styleCSS = this._updateStepStyle(action)
+
+                } else { // unfolding
+
+                  // if (step === 1) {
+
+                  //   this._setDimOffset();
+
+                  //   // if options.centered is true, we need to center the container.
+                  //   // either ways we need to make sure the container does not move outside the viewport.
+                  //   // let's get the correct translation values for the container's transition
+                  //   // var coords = this._getTranslationViewport();
+
+                  //   this.$el.addClass('uc-current').css({
+                  //     left: coords.ftx,
+                  //     top: coords.fty
+                  //   });
+
+                  //   contentTopFront = this.iContent;
+
+                  //   this.$finalEl.hide().children().hide();
+
+                  // } else {
+
+                    // style of new layout will depend on the last step direction
+                styleCSS = this._updateStepStyle(action)
+
+                  // }
+
+                  if (step === this.options.folds - 2) {
+                    var content = this._setLastStep(direction, styleCSS),
+                      contentBottom = content.bottom,
+                      contentTopBack = content.top;
+                    console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
+
+                  }
+
+                }
+
+                break;
+
+            default:
+                // style of new layout will depend on the last step direction
+                styleCSS = this._updateStepStyle(action)
+        };
 
         break;
 
