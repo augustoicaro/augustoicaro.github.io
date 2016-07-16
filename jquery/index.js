@@ -287,6 +287,19 @@ $.each(classList, function (index, item) {
             pfold.fold();
         } );
     });*/
+    /* Footer position fix */
+    $(function() {
+        console.log("QUem é maior? %s ou %s", $( 'div.sidepanel' ).height(), window.innerHeight);
+        if( $( 'div.sidepanel' ).height() + 196 < window.innerHeight )
+        {
+            $( 'div.footer' ).css({'bottom':'5px'});
+        }
+        else
+        {
+            $( 'div.footer' ).css({'top':'calc( 525px + 23% )'});
+        }
+    });
+
     /*PFOLD functions*/
     $(function() {
         // say we want to have only one item opened at one moment
@@ -302,7 +315,7 @@ $.each(classList, function (index, item) {
             var pfold = $item.pfold( {
             folddirection : direction,
             //easing : 'ease-in-out',
-            speed : 1000,
+            speed : 180,
             folds: 8,
             centered : true
             } );

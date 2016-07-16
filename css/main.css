@@ -1,7 +1,7 @@
 .sidepanel {
   position: absolute;
   width: 15%;
-  height: calc( 385px + 23% );
+  padding-bottom: 20px;
   float: left;
   top: 130px;
   background-color: #eee;
@@ -143,7 +143,6 @@
 }
 .footer {
 position: absolute;
-top: calc( 525px + 23% );
 height: 3em;
 width: 100%;
 }

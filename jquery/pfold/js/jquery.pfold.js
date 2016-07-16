@@ -124,17 +124,16 @@
 
       // apply perspective to the main container
 
-      /*if (this.support ) {
+      this.$el.css('perspective', this.options.perspective + 'px');
 
-        this.$el.css('perspective', this.options.perspective + 'px');
+      // if (this.support ) {
+      //   // set the transition to the main container
+      //   // we will need to move it if:
+      //   // this.options.centered is true;
+      //   // the opened element goes outside of the viewport
+      //   this.$el.css('transition', 'all ' + (this.options.speed * this.options.folds * this.options.containerSpeedFactor) + 'ms ' + this.options.containerEasing);
 
-        // set the transition to the main container
-        // we will need to move it if:
-        // this.options.centered is true;
-        // the opened element goes outside of the viewport
-        this.$el.css('transition', 'all ' + (this.options.speed * this.options.folds * this.options.containerSpeedFactor) + 'ms ' + this.options.containerEasing);
-
-      }*/
+      // }
 
       // initial sizes
       this.initialDim = {
@@ -300,8 +299,7 @@
           break;
 
         case 'final':
-
-          b -= this.initialDim.height * 2;
+          // b -= this.initialDim.height * 2;
           break;
         }
 
@@ -353,7 +351,7 @@
 
       return {
         width: this.initialDim.width * Math.pow(2, horizTimes),
-        height: this.initialDim.height * Math.pow(2, vertTimes) - this.initialDim.height * 2
+        height: ( $( 'div.sidepanel' ).height()+136 > window.innerHeight ) ? $( 'div.sidepanel' ).height()+20 : window.innerHeight - 195
       };
 
     },
@@ -373,7 +371,7 @@
 
         w = this.lastDirection === 'left' || this.lastDirection === 'right' ? this.lastStyle.width * 2 : this.lastStyle.width,
         h = this.lastDirection === 'left' || this.lastDirection === 'right' ? this.lastStyle.height : this.lastStyle.height * 2,
-        h = this.lastDirection === 'final' ? this.lastStyle.height - this.initialDim.height * 2  : h,
+        h = this.lastDirection === 'final' ? (( $( 'div.sidepanel' ).height()+136 > window.innerHeight ) ? $( 'div.sidepanel' ).height()+18 : window.innerHeight - 195 ) : h,
         l = this.lastDirection === 'left' ? this.lastStyle.left - this.lastStyle.width : this.lastStyle.left,
         t = this.lastDirection === 'top' ? this.lastStyle.top - this.lastStyle.height : this.lastStyle.top;
 
@@ -387,39 +385,12 @@
       };
 
     },
-    // get the opposite direction
-    _getOppositeDirection: function (realdirection) {
-
-      var rvd;
-
-      switch (realdirection) {
-
-      case 'left':
-        rvd = 'right';
-        break;
-      case 'right':
-        rvd = 'left';
-        break;
-      case 'top':
-        rvd = 'bottom';
-        break;
-      case 'final':
-      case 'bottom':
-        rvd = 'top';
-        break;
-
-      }
-
-      return rvd;
-
-    },
     // main function: unfolds and folds the element [options.folds] times by using recursive calls
     _start: function (action, step) {
 
       // apply perspective to the main container
 
       console.debug("Reativando os efeitos");
-      this.$el.css('perspective', this.options.perspective + 'px');
       if (this.support ) {
         // set the transition to the main container
         // we will need to move it if:
@@ -572,74 +543,42 @@
 
         break;
 
-        // all the other steps
+      // all the other steps
       default:
 
         switch (step) {
 
-            case 1:
-            case this.options.folds - 2:
-                if (action === 'fold') {
-
-                  // if (step === this.options.folds - 2) {
-
-                  //   styleCSS = this.initialDim;
-                  //   contentTopFront = this.iContent;
-
-                  // }
+          case 1:
+          case this.options.folds - 2:
+            if (action === 'fold') {
 
                 if (step === 1) {
                     var content = this._setLastStep(direction, styleCSS),
                       contentBottom = content.bottom,
                       contentTopBack = content.top;
                 }
-
-                    // this.$finalEl.hide().children().hide();
-                    // style of new layout will depend on the last step direction
-                styleCSS = this._updateStepStyle(action)
-
-                } else { // unfolding
-
-                  // if (step === 1) {
-
-                  //   this._setDimOffset();
-
-                  //   // if options.centered is true, we need to center the container.
-                  //   // either ways we need to make sure the container does not move outside the viewport.
-                  //   // let's get the correct translation values for the container's transition
-                  //   // var coords = this._getTranslationViewport();
-
-                  //   this.$el.addClass('uc-current').css({
-                  //     left: coords.ftx,
-                  //     top: coords.fty
-                  //   });
-
-                  //   contentTopFront = this.iContent;
-
-                  //   this.$finalEl.hide().children().hide();
-
-                  // } else {
-
-                    // style of new layout will depend on the last step direction
-                styleCSS = this._updateStepStyle(action)
-
-                  // }
-
-                  if (step === this.options.folds - 2) {
-                    var content = this._setLastStep(direction, styleCSS),
-                      contentBottom = content.bottom,
-                      contentTopBack = content.top;
-                    console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
-
-                  }
-
-                }
-
-                break;
-
-            default:
                 // style of new layout will depend on the last step direction
-                styleCSS = this._updateStepStyle(action)
+                styleCSS = this._updateStepStyle(action);
+
+            } else { // unfolding
+
+            styleCSS = this._updateStepStyle(action);
+
+              if (step === this.options.folds - 2) {
+                var content = this._setLastStep(direction, styleCSS),
+                  contentBottom = content.bottom,
+                  contentTopBack = content.top;
+                console.log("Ultimo passo com content =  %s\n Com contentBottom =  %s\n E contentTopBack = ",content,contentBottom,contentTopBack);
+
+              }
+
+            }
+
+          break;
+
+          default:
+            // style of new layout will depend on the last step direction
+            styleCSS = this._updateStepStyle(action);
         };
 
         break;
@@ -654,23 +593,44 @@
       }
 
       var unfoldClass = 'uc-unfold-' + direction;
-      if( direction === 'final' ) var topElClasses = (action === 'fold') ? 'uc-unfold uc-part-final ' + unfoldClass : 'uc-part-final ' + unfoldClass;
+      if( direction === 'final' )
+      {
+        var topElClasses = (action === 'fold') ? 'uc-unfold uc-part-final ' + unfoldClass : 'uc-part-final ' + unfoldClass;
+        contentTopFront='';
+        contentTopBack='';
+      }
       else var topElClasses = (action === 'fold') ? 'uc-unfold uc-part ' + unfoldClass : 'uc-part ' + unfoldClass;
       var $topEl = $('<div class="' + topElClasses + '"><div class="uc-front">' + contentTopFront + '</div><div class="uc-back">' + contentTopBack + '</div></div>').css(styleCSS),
         $bottomEl = $('<div class="uc-part uc-single">' + contentBottom + '</div>').css(styleCSS);
+      // Modifications of the final unfold
       if ( direction === 'final' )
       {
-        console.log("TESTE DE ELEMENTO: %s", $bottomEl[0].style.height);
-        $bottomEl[0].style.height = "520px";
-        console.log("TESTE DE ELEMENTO: %s", $bottomEl[0].style.height);
-      }
+        // Fix bottom and top part height to show the other part that will be folded   window.innerHeight - 195
+        if( $( 'div.sidepanel' ).height()+136 > window.innerHeight ) {
+          // Sidepanel overflow window
+          $bottomEl.height( $bottomEl.height() > $( 'div.sidepanel' ).height() ? ($( 'div.sidepanel' ).height()-($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $bottomEl.height() );
+          $topEl.height( $topEl.height() > $( 'div.sidepanel' ).height() ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $topEl.height() );
+          $topEl.children("*").css('height', $topEl.height() > $( 'div.sidepanel' ).height() ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $topEl.height() );
+          $( 'object#curriculum' ).height( $( 'div.sidepanel' ).height()-50 );
+        } else {
+          console.log("ORIGINAL HEIGHT: %s",$topEl.height());
+          var originalHeight = $topEl.height();
+          console.log("%s is > than %s | %s",($topEl.height() * 2),(window.innerHeight - 195),( (window.innerHeight - 195 - $topEl.height())+"px"));
+          // $bottomEl[0].style.height = ($bottomEl[0].style.height * 2) > (window.innerHeight - 195) ? ( (window.innerHeight - 195-$bottomEl[0].style.height)+"px") : $bottomEl[0].style.height;
+          $topEl.height( ( $topEl.height() * 2)  > (window.innerHeight - 195) ? ( (window.innerHeight - 195 - $topEl.height())+"px") : $topEl.height() );
+          $topEl.children("*").css('height', ($topEl.height() * 2)  > (window.innerHeight - 195) ? ( (window.innerHeight - 195 - $topEl.height())+"px") : $topEl.height());
+          $topEl.css('top', ( originalHeight * 2)  > (window.innerHeight - 195) ? '136px' : $topEl.position().top );
+          $( 'object#curriculum' ).height( window.innerHeight - 245 );
+          console.log("HEIGHT: %s",$topEl[0].style.height);
+        }
 
+}
       // cache last direction and style
       this.lastDirection = (action === 'fold') ? nextdirection : direction;
       this.lastStyle = styleCSS;
 
       // append new elements
-      ( direction === 'final' ) ? this.$el.append($topEl, $bottomEl) : this.$el.append($bottomEl, $topEl);
+      this.$el.append($bottomEl, $topEl);
 
       // add overlays
       if (this.options.overlays && this.support && direction !== 'final') {
