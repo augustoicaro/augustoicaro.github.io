@@ -357,13 +357,13 @@ $.each(classList, function (index, item) {
         } );
         $( '#grid1 > div.uc-container' ).each( function( i ) {
             var $item = $( this ), direction;
-            direction = ['bottom','right','top','right','top','right','bottom'];
+            direction = ['bottom','right','top','right','top','right','bottom','final'];
 
             var pfold = $item.pfold( {
             folddirection : direction,
             //easing : 'ease-in-out',
             speed : 180,
-            folds: 7,
+            folds: 8,
             centered : true
             } );
 
@@ -396,13 +396,13 @@ $.each(classList, function (index, item) {
         } );
         $( '#grid2 > div.uc-container' ).each( function( i ) {
             var $item = $( this ), direction;
-            direction = ['bottom','right','top','right','top','right','bottom'];
+            direction = ['bottom','right','top','right','top','right','bottom','final'];
 
             var pfold = $item.pfold( {
             folddirection : direction,
             //easing : 'ease-in-out',
             speed : 180,
-            folds: 7,
+            folds: 8,
             centered : true
             } );
 

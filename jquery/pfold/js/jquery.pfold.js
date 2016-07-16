@@ -613,15 +613,11 @@
           $topEl.children("*").css('height', $topEl.height() > $( 'div.sidepanel' ).height() ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $topEl.height() );
           $( 'object#curriculum' ).height( $( 'div.sidepanel' ).height()-50 );
         } else {
-          console.log("ORIGINAL HEIGHT: %s",$topEl.height());
           var originalHeight = $topEl.height();
-          console.log("%s is > than %s | %s",($topEl.height() * 2),(window.innerHeight - 195),( (window.innerHeight - 195 - $topEl.height())+"px"));
-          // $bottomEl[0].style.height = ($bottomEl[0].style.height * 2) > (window.innerHeight - 195) ? ( (window.innerHeight - 195-$bottomEl[0].style.height)+"px") : $bottomEl[0].style.height;
           $topEl.height( ( $topEl.height() * 2)  > (window.innerHeight - 195) ? ( (window.innerHeight - 195 - $topEl.height())+"px") : $topEl.height() );
           $topEl.children("*").css('height', ($topEl.height() * 2)  > (window.innerHeight - 195) ? ( (window.innerHeight - 195 - $topEl.height())+"px") : $topEl.height());
           $topEl.css('top', ( originalHeight * 2)  > (window.innerHeight - 195) ? '136px' : $topEl.position().top );
           $( 'object#curriculum' ).height( window.innerHeight - 245 );
-          console.log("HEIGHT: %s",$topEl[0].style.height);
         }
 
 }
@@ -630,7 +626,7 @@
       this.lastStyle = styleCSS;
 
       // append new elements
-      this.$el.append($bottomEl, $topEl);
+      (direction === 'final') ? ( ($( 'div.sidepanel' ).height()+136 <= window.innerHeight) ? this.$el.append($bottomEl, $topEl) : this.$el.append($topEl, $bottomEl) ) : this.$el.append($bottomEl, $topEl);
 
       // add overlays
       if (this.options.overlays && this.support && direction !== 'final') {
