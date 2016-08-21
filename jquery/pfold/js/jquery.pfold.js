@@ -595,6 +595,13 @@
       var unfoldClass = 'uc-unfold-' + direction;
       if( direction === 'final' )
       {
+        // Puts de direction for last fold of final step
+        if( $( 'div.sidepanel' ).height()+136 > window.innerHeight ) {
+          unfoldClass = unfoldClass + "-top";
+        }
+        else{
+          unfoldClass = unfoldClass + "-bottom";
+        }
         var topElClasses = (action === 'fold') ? 'uc-unfold uc-part-final ' + unfoldClass : 'uc-part-final ' + unfoldClass;
         contentTopFront='';
         contentTopBack='';
@@ -608,9 +615,11 @@
         // Fix bottom and top part height to show the other part that will be folded   window.innerHeight - 195
         if( $( 'div.sidepanel' ).height()+136 > window.innerHeight ) {
           // Sidepanel overflow window
-          $bottomEl.height( $bottomEl.height() > $( 'div.sidepanel' ).height() ? ($( 'div.sidepanel' ).height()-($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $bottomEl.height() );
-          $topEl.height( $topEl.height() > $( 'div.sidepanel' ).height() ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $topEl.height() );
-          $topEl.children("*").css('height', $topEl.height() > $( 'div.sidepanel' ).height() ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height())+"px") : $topEl.height() );
+          $topEl.height( $topEl.height() > ($( 'div.sidepanel' ).height()+20) ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height()-20)+"px") : $topEl.height() );
+          $topEl.children("*").css('height', $topEl.height() > ($( 'div.sidepanel' ).height()+20) ? ( ($bottomEl.height()-$( 'div.sidepanel' ).height()-20)+"px") : $topEl.height() );
+          $topEl.css('top', $bottomEl.height() > ($( 'div.sidepanel' ).height()+20) ? $( 'div.sidepanel' ).height() + 20 - 216 + "px" : $topEl.position().top );
+          $bottomEl.height( $bottomEl.height() > ($( 'div.sidepanel' ).height()+20) ? $( 'div.sidepanel' ).height()+20+"px" : $bottomEl.height() );
+          $bottomEl.children("*").css('height', $bottomEl.height() > ($( 'div.sidepanel' ).height()+20) ? $( 'div.sidepanel' ).height()+20+"px" : $bottomEl.height() );
           $( 'object#curriculum' ).height( $( 'div.sidepanel' ).height()-50 );
         } else {
           var originalHeight = $topEl.height();
@@ -618,6 +627,7 @@
           $topEl.children("*").css('height', ($topEl.height() * 2)  > (window.innerHeight - 195) ? ( (window.innerHeight - 195 - $topEl.height())+"px") : $topEl.height());
           $topEl.css('top', ( originalHeight * 2)  > (window.innerHeight - 195) ? '136px' : $topEl.position().top );
           $( 'object#curriculum' ).height( window.innerHeight - 245 );
+          console.log("FINAL top HEIGHT: %s",$topEl.height());
         }
 
 }

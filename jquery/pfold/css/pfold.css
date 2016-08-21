@@ -129,7 +129,15 @@
     transform-origin: 50% 100%;
 }
 
-.uc-unfold-final {
+.uc-unfold-final-top {
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    -o-transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+}
+
+.uc-unfold-final-bottom {
     -webkit-transform-origin: 50% 100%;
     -moz-transform-origin: 50% 100%;
     -o-transform-origin: 50% 100%;
@@ -170,7 +178,15 @@
     transform: rotateX(-180deg);
 }
 
-.uc-unfold-final.uc-unfold {
+.uc-unfold-final-top.uc-unfold {
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+
+.uc-unfold-final-bottom.uc-unfold {
     -webkit-transform: rotateX(-180deg);
     -moz-transform: rotateX(-180deg);
     -o-transform: rotateX(-180deg);

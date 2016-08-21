@@ -289,14 +289,14 @@ $.each(classList, function (index, item) {
     });*/
     /* Footer position fix */
     $(function() {
-        console.log("QUem é maior? %s ou %s", $( 'div.sidepanel' ).height(), window.innerHeight);
+        console.log("QUem é maior? %s ou %s", $( 'div.sidepanel' ).height()+196, window.innerHeight);
         if( $( 'div.sidepanel' ).height() + 196 < window.innerHeight )
         {
             $( 'div.footer' ).css({'bottom':'5px'});
         }
         else
         {
-            $( 'div.footer' ).css({'top':'calc( 525px + 23% )'});
+            $( 'div.footer' ).css({'top':'calc( 535px + 23% )'});
         }
     });
 
