@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import meImg from './assets/me.png';
 
 type Section = 'home' | 'about' | 'projects' | 'contact';
 
@@ -61,6 +62,14 @@ function App() {
   const [commandTyped, setCommandTyped] = useState(false);
   const [accessGranted, setAccessGranted] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const renderContent = () => {
     switch (activeSection) {
       case 'home':
@@ -75,10 +84,12 @@ function App() {
                 <span className="font-bold">[{timeString}]</span> guest@matrix:~$
               </span>
               {commandTyped ? (
-                <span className="inline-block">./enter_the_matrix --show-operator</span>
+                <span className="inline-block">
+                  {isMobile ? "./enter_the_matrix" : "./enter_the_matrix --show-operator"}
+                </span>
               ) : (
                 <TypewriterText
-                  text="./enter_the_matrix --show-operator"
+                  text={isMobile ? "./enter_the_matrix" : "./enter_the_matrix --show-operator"}
                   speed={30}
                   startDelay={500}
                   className="inline-block"
@@ -190,11 +201,22 @@ function App() {
           `}
           onClose={activeSection !== 'home' ? handleClose : undefined}
         >
-          <div className="flex h-full">
+          <div className="flex flex-col md:flex-row h-full">
             {/* Sidebar - Desktop Only */}
             {(accessGranted || showMenu) && (
               <div className="hidden md:block h-full">
                 <Sidebar activeSection={activeSection} onSelect={handleMenuSelect} />
+              </div>
+            )}
+
+            {/* Mobile Profile Picture - Only for About Me */}
+            {activeSection === 'about' && (
+              <div className="md:hidden w-full flex justify-center shrink-0 bg-transparent relative group border-b border-matrix-dark-green">
+                <img
+                  src={meImg}
+                  alt="Augusto Icaro"
+                  className="w-full h-full"
+                />
               </div>
             )}
 
