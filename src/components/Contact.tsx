@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, Linkedin, Github } from 'lucide-react';
-import { ImmersedIcon, MetaIcon } from './CustomIcons';
+import { ImmersedIcon, MetaIcon, DiscordIcon } from './CustomIcons';
 
 const Contact: React.FC = () => {
     return (
@@ -20,21 +20,25 @@ const Contact: React.FC = () => {
                             <Mail size={20} />
                             <span>contact@augustoicaro.com</span>
                         </a>
-                        <a href="https://linkedin.com/in/augustoicaro" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
+                        <a href="https://linkedin.com/in/augustoicaro" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
                             <Linkedin size={20} />
                             <span>/in/augustoicaro</span>
                         </a>
-                        <a href="https://github.com/augustoicaro" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
+                        <a href="https://github.com/augustoicaro" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
                             <Github size={20} />
-                            <span>@augustoicaro</span>
+                            <span>augustoicaro</span>
                         </a>
-                        <a href="https://horizon.meta.com/profile/augustoicaro" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
+                        <a href="https://discordapp.com/users/574239683903750144" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
+                            <DiscordIcon size={20} />
+                            <span>augustoicaro</span>
+                        </a>
+                        <a href="https://horizon.meta.com/profile/augustoicaro" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
                             <MetaIcon size={20} />
-                            <span>@augustoicaro</span>
+                            <span>augustoicaro</span>
                         </a>
-                        <a href="https://immersed.com/join?q=2JRFKWF6" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
+                        <a href="https://immersed.com/join?q=2JRFKWF6" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 hover:text-white transition-colors p-2 hover:bg-matrix-green/10 rounded-sm">
                             <ImmersedIcon size={20} />
-                            <span>@augusto_icaro</span>
+                            <span>augusto_icaro</span>
                         </a>
                     </div>
                 </div>
