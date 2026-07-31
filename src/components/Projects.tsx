@@ -3,25 +3,40 @@ import { ExternalLink, Github } from 'lucide-react';
 
 const projects = [
     {
-        title: "Project Alpha",
-        description: "A neural network visualization tool built with WebGL.",
-        tech: ["React", "Three.js", "TensorFlow.js"],
-        link: "#",
-        github: "#"
+        title: "Immersed-Linux-Virtual-Monitors",
+        description: "A step-by-step guide and collection of scripts for configuring Linux virtual monitors for Immersed.",
+        tech: ["Linux", "X11", "Wayland", "Shell"],
+        github: "https://github.com/augustoicaro/Immersed-Linux-Virtual-Monitors"
     },
     {
-        title: "Cyber Commerce",
-        description: "E-commerce platform with futuristic UI components.",
-        tech: ["Next.js", "Stripe", "Tailwind"],
-        link: "#",
-        github: "#"
+        title: "Origami Typo & Origami Typo Dual Color",
+        description: "Origami-inspired typefaces created with FontStruct, combining computational origami and experimental typography.",
+        tech: ["FontStruct", "Typography", "Computational Origami"],
+        link: "https://luc.devroye.org/fonts-79647.html"
     },
     {
-        title: "Data Stream",
-        description: "Real-time data processing dashboard.",
-        tech: ["Vue", "Socket.io", "D3.js"],
-        link: "#",
-        github: "#"
+        title: "SFD-CNN-TL",
+        description: "Reproducible notebooks and models for seismic fault detection using transfer learning from a CNN pretrained on synthetic data.",
+        tech: ["Python", "Jupyter", "CNN", "Transfer Learning"],
+        github: "https://github.com/augustoicaro/SFD-CNN-TL"
+    },
+    {
+        title: "vivaldi-matrix",
+        description: "A web-based green code rain experience adapted as a Vivaldi browser start-page background.",
+        tech: ["JavaScript", "WebGL", "WebGPU", "WGSL"],
+        github: "https://github.com/augustoicaro/vivaldi-matrix"
+    },
+    {
+        title: "HTC-Vive-Leap-Interaction-Engine-Integration",
+        description: "Integration of the Leap Motion interaction engine with the HTC Vive hand-tracking SDK for Unity.",
+        tech: ["C#", "Unity", "HTC Vive", "Leap Motion"],
+        github: "https://github.com/augustoicaro/HTC-Vive-Leap-Interaction-Engine-Integration"
+    },
+    {
+        title: "TwentySecondsCurriculumVitae-LaTex",
+        description: "A LaTeX curriculum vitae template designed for a polished, quick-to-read presentation.",
+        tech: ["LaTeX", "Font Awesome", "PDF"],
+        github: "https://github.com/augustoicaro/TwentySecondsCurriculumVitae-LaTex"
     }
 ];
 
@@ -43,8 +58,28 @@ const Projects: React.FC = () => {
                                 {project.title}
                             </h4>
                             <div className="flex space-x-2">
-                                <a href={project.github} className="hover:text-white transition-colors"><Github size={16} /></a>
-                                <a href={project.link} className="hover:text-white transition-colors"><ExternalLink size={16} /></a>
+                                {project.github && (
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`View ${project.title} on GitHub`}
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        <Github size={16} />
+                                    </a>
+                                )}
+                                {project.link && (
+                                    <a
+                                        href={project.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`View ${project.title} online`}
+                                        className="hover:text-white transition-colors"
+                                    >
+                                        <ExternalLink size={16} />
+                                    </a>
+                                )}
                             </div>
                         </div>
                         <p className="text-sm text-matrix-green/80 mb-3">
