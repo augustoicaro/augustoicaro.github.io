@@ -13,3 +13,241 @@
     @apply bg-matrix-black text-matrix-green font-matrix overflow-hidden;
   }
 }
+
+@layer components {
+  .metronome-beat-ring {
+    position: relative;
+    display: grid;
+    width: min(66vw, 15rem);
+    aspect-ratio: 1;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--color-matrix-dark-green) 65%, transparent);
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle, color-mix(in srgb, var(--color-matrix-dim) 32%, transparent) 0 42%, transparent 43%),
+      color-mix(in srgb, var(--color-matrix-black) 82%, transparent);
+    box-shadow:
+      inset 0 0 2rem color-mix(in srgb, var(--color-matrix-green) 8%, transparent),
+      0 0 1.25rem color-mix(in srgb, var(--color-matrix-green) 8%, transparent);
+  }
+
+  .metronome-beat-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--color-matrix-dark-green);
+    border-radius: 9999px;
+    background: var(--color-matrix-black);
+    color: var(--color-matrix-dark-green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    transition:
+      color 80ms linear,
+      border-color 80ms linear,
+      box-shadow 80ms linear,
+      background-color 80ms linear;
+  }
+
+  .metronome-beat-marker--subdivision {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-color: color-mix(in srgb, var(--color-matrix-dark-green) 72%, transparent);
+    color: transparent;
+    font-size: 0;
+  }
+
+  .metronome-beat-marker--active {
+    border-color: var(--color-matrix-green);
+    background: color-mix(in srgb, var(--color-matrix-green) 18%, var(--color-matrix-black));
+    color: var(--color-matrix-green);
+    box-shadow: 0 0 0.75rem color-mix(in srgb, var(--color-matrix-green) 70%, transparent);
+    animation: metronome-marker-flash 140ms ease-out;
+  }
+
+  .metronome-beat-marker--accent {
+    border-color: white;
+    color: white;
+    box-shadow:
+      0 0 0.3rem white,
+      0 0 1rem color-mix(in srgb, var(--color-matrix-green) 85%, transparent);
+  }
+
+  .metronome-tone-pulse {
+    position: absolute;
+    z-index: 1;
+    inset: 21%;
+    border: 1px solid var(--color-matrix-green);
+    border-radius: 9999px;
+    pointer-events: none;
+    animation: metronome-tone-pulse 180ms ease-out forwards;
+  }
+
+  .metronome-tone-pulse--subdivision {
+    border-color: var(--color-matrix-dark-green);
+    animation-duration: 130ms;
+    opacity: 0.65;
+  }
+
+  .metronome-tone-pulse--accent {
+    border-color: white;
+    box-shadow: 0 0 0.7rem color-mix(in srgb, var(--color-matrix-green) 70%, transparent);
+    animation-duration: 240ms;
+  }
+
+  .metronome-play-button {
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    width: 7.25rem;
+    height: 7.25rem;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    border: 1px solid var(--color-matrix-green);
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--color-matrix-black) 90%, transparent);
+    color: var(--color-matrix-green);
+    box-shadow:
+      inset 0 0 1.2rem color-mix(in srgb, var(--color-matrix-green) 13%, transparent),
+      0 0 1rem color-mix(in srgb, var(--color-matrix-green) 24%, transparent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    transition:
+      color 160ms ease,
+      background-color 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .metronome-play-button:hover {
+    background: color-mix(in srgb, var(--color-matrix-green) 15%, var(--color-matrix-black));
+    color: white;
+    box-shadow:
+      inset 0 0 1.2rem color-mix(in srgb, var(--color-matrix-green) 20%, transparent),
+      0 0 1.4rem color-mix(in srgb, var(--color-matrix-green) 36%, transparent);
+  }
+
+  .metronome-play-button:focus-visible,
+  .metronome-step-button:focus-visible {
+    outline: 2px solid var(--color-matrix-green);
+    outline-offset: 3px;
+  }
+
+  .metronome-step-button {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: none;
+    place-items: center;
+    border: 1px solid var(--color-matrix-dark-green);
+    color: var(--color-matrix-green);
+    transition:
+      color 120ms ease,
+      background-color 120ms ease,
+      border-color 120ms ease;
+  }
+
+  .metronome-step-button:hover:not(:disabled) {
+    border-color: var(--color-matrix-green);
+    background: color-mix(in srgb, var(--color-matrix-green) 12%, transparent);
+    color: white;
+  }
+
+  .metronome-step-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+
+  .metronome-range {
+    height: 1rem;
+    cursor: pointer;
+    appearance: none;
+    background: transparent;
+  }
+
+  .metronome-range::-webkit-slider-runnable-track {
+    height: 2px;
+    background: var(--color-matrix-dark-green);
+  }
+
+  .metronome-range::-webkit-slider-thumb {
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.44rem;
+    appearance: none;
+    border: 1px solid var(--color-matrix-green);
+    border-radius: 9999px;
+    background: var(--color-matrix-black);
+    box-shadow: 0 0 0.5rem color-mix(in srgb, var(--color-matrix-green) 55%, transparent);
+  }
+
+  .metronome-range::-moz-range-track {
+    height: 2px;
+    background: var(--color-matrix-dark-green);
+  }
+
+  .metronome-range::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid var(--color-matrix-green);
+    border-radius: 9999px;
+    background: var(--color-matrix-black);
+    box-shadow: 0 0 0.5rem color-mix(in srgb, var(--color-matrix-green) 55%, transparent);
+  }
+}
+
+@keyframes metronome-marker-flash {
+  0% {
+    filter: brightness(2.2);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+@keyframes metronome-tone-pulse {
+  0% {
+    transform: scale(0.72);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .metronome-beat-ring {
+    width: min(72vw, 13.5rem);
+  }
+
+  .metronome-play-button {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metronome-beat-marker,
+  .metronome-play-button,
+  .metronome-step-button {
+    transition: none;
+  }
+
+  .metronome-beat-marker--active,
+  .metronome-tone-pulse {
+    animation: none;
+  }
+
+  .metronome-tone-pulse {
+    opacity: 0.65;
+  }
+}

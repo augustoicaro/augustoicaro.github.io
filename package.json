@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "tsc --target ES2022 --module CommonJS --moduleResolution Node --esModuleInterop --types node --skipLibCheck --outDir node_modules/.tmp/metronome-tests src/lib/metronomeTiming.ts tests/metronomeTiming.test.ts && node --test node_modules/.tmp/metronome-tests/tests/metronomeTiming.test.js",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

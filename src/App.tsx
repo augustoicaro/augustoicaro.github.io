@@ -7,9 +7,10 @@ import Sidebar from './components/Sidebar';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Metronome from './components/metronome/Metronome';
 import meImg from './assets/me.png';
 
-type Section = 'home' | 'about' | 'projects' | 'contact';
+type Section = 'home' | 'about' | 'projects' | 'metronome' | 'contact';
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('home');
@@ -23,7 +24,7 @@ function App() {
   };
 
   const handleClose = () => {
-    setActiveSection('home');
+    setActiveSection(activeSection === 'metronome' ? 'projects' : 'home');
     // Don't reset animation state
     // setCommandTyped(false);
     // setShowMenu(false);
@@ -31,23 +32,23 @@ function App() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Handle Escape key to return home
+      // Handle Escape key to leave the active section
       if (e.key === 'Escape' && activeSection !== 'home') {
-        handleClose();
+        setActiveSection(activeSection === 'metronome' ? 'projects' : 'home');
         return;
       }
 
       // Handle Number keys for menu selection (globally when menu is shown)
-      if (showMenu) {
+      if (showMenu && activeSection === 'home') {
         switch (e.key) {
           case '1':
-            handleMenuSelect('about');
+            setActiveSection('about');
             break;
           case '2':
-            handleMenuSelect('projects');
+            setActiveSection('projects');
             break;
           case '3':
-            handleMenuSelect('contact');
+            setActiveSection('contact');
             break;
           default:
             break;
@@ -72,7 +73,7 @@ function App() {
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'home':
+      case 'home': {
         const now = new Date();
         const timeString = now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
 
@@ -165,10 +166,13 @@ function App() {
             )}
           </div>
         );
+      }
       case 'about':
         return <AboutMe />;
       case 'projects':
-        return <Projects />;
+        return <Projects onOpenMetronome={() => setActiveSection('metronome')} />;
+      case 'metronome':
+        return <Metronome onBack={() => setActiveSection('projects')} />;
       case 'contact':
         return <Contact />;
       default:
@@ -181,6 +185,7 @@ function App() {
       case 'home': return './enter_the_matrix';
       case 'about': return './decrypt user_profile.info';
       case 'projects': return './build_view projects.info';
+      case 'metronome': return './run metronome --time=4/4';
       case 'contact': return 'ping augustoicaro';
     }
   };

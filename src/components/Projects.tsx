@@ -1,7 +1,17 @@
 import React from 'react';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Play } from 'lucide-react';
+
+interface ProjectsProps {
+    onOpenMetronome: () => void;
+}
 
 const projects = [
+    {
+        title: "Metronome Trainer",
+        description: "A focused 4/4 metronome with subdivisions, accented downbeats, and silent gap-bar training.",
+        tech: ["React", "TypeScript", "Web Audio API"],
+        internal: "metronome"
+    },
     {
         title: "Immersed-Linux-Virtual-Monitors",
         description: "A step-by-step guide and collection of scripts for configuring Linux virtual monitors for Immersed.",
@@ -40,7 +50,7 @@ const projects = [
     }
 ];
 
-const Projects: React.FC = () => {
+const Projects: React.FC<ProjectsProps> = ({ onOpenMetronome }) => {
     return (
         <div className="space-y-6">
             <h3 className="text-xl font-bold text-white border-b border-matrix-dark-green pb-2">
@@ -51,7 +61,24 @@ const Projects: React.FC = () => {
                 {projects.map((project, index) => (
                     <div
                         key={index}
-                        className="border border-matrix-dark-green bg-matrix-dim/20 p-4 hover:bg-matrix-green/10 transition-colors group"
+                        onClick={project.internal === 'metronome' ? onOpenMetronome : undefined}
+                        onKeyDown={(event) => {
+                            if (
+                                project.internal === 'metronome' &&
+                                (event.key === 'Enter' || event.key === ' ')
+                            ) {
+                                event.preventDefault();
+                                onOpenMetronome();
+                            }
+                        }}
+                        role={project.internal === 'metronome' ? 'button' : undefined}
+                        tabIndex={project.internal === 'metronome' ? 0 : undefined}
+                        className={[
+                            "border border-matrix-dark-green bg-matrix-dim/20 p-4 hover:bg-matrix-green/10 transition-colors group",
+                            project.internal === 'metronome'
+                                ? "cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-matrix-green"
+                                : "",
+                        ].join(' ')}
                     >
                         <div className="flex justify-between items-start mb-2">
                             <h4 className="font-bold text-lg group-hover:text-white transition-colors">
@@ -79,6 +106,15 @@ const Projects: React.FC = () => {
                                     >
                                         <ExternalLink size={16} />
                                     </a>
+                                )}
+                                {project.internal === 'metronome' && (
+                                    <span
+                                        className="flex items-center gap-1 border border-matrix-dark-green px-1.5 py-0.5 text-[10px] transition-colors hover:border-matrix-green hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-matrix-green"
+                                        aria-hidden="true"
+                                    >
+                                        <Play size={12} aria-hidden="true" />
+                                        OPEN
+                                    </span>
                                 )}
                             </div>
                         </div>
