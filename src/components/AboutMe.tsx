@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import TypewriterText from './TypewriterText';
+import gdeMark from '../assets/gde-mark.svg';
 
 const skills = [
     'Computer Graphics',
     'Computer Vision',
     'Artificial Intelligence',
-    'Virtual & Augmented Reality',
+    'Extended Reality',
     'C/C++',
     'C#',
     'Python',
@@ -35,8 +36,19 @@ const AboutMe: React.FC = () => {
             <div className="flex flex-col md:flex-row gap-6 items-start">
 
                 <div className="space-y-4 w-full">
-                    <h3 className="text-xl font-bold text-white border-b border-matrix-dark-green pb-2 inline-block">
-                        USER_PROFILE: AUGUSTO ICARO FARIAS DA CUNHA, PHD
+                    <h3 className="inline-flex w-full flex-col items-start justify-between gap-2 md:flex-row md:gap-3 text-xl font-bold text-white border-b border-matrix-dark-green pb-2">
+                        <span className="min-w-0">USER_PROFILE: AUGUSTO ICARO FARIAS DA CUNHA, PHD</span>
+                        <a
+                            href="https://g.dev/augustoicaro"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Google Developer Expert - view Augusto Icaro's profile (opens in a new tab)"
+                            title="Google Developer Expert"
+                            className="inline-flex h-7 shrink-0 items-center gap-2 whitespace-nowrap rounded-sm font-sans text-xl font-medium leading-7 text-white transition-colors hover:text-matrix-green focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-matrix-green"
+                        >
+                            <img src={gdeMark} alt="" width={40} height={20} className="h-5 w-10" />
+                            <span>Expert</span>
+                        </a>
                     </h3>
                     <TypewriterText
                         text={[
@@ -48,7 +60,7 @@ const AboutMe: React.FC = () => {
                             "",
                             "Research focus: Data Science, Computer Graphics, and Virtual & Augmented Reality.",
                             "",
-                            "Linux and XR enthusiast and admirer of the \"Open Source\" philosophy."
+                            "Google Developer Expert in Android XR, Linux and XR enthusiast, and admirer of the \"Open Source\" philosophy. At Immersed, I help make extended reality (XR) a practical place to work and collaborate."
                         ]}
                         speed={20}
                         onComplete={() => setProfileLoaded(true)}
